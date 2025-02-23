@@ -57,6 +57,8 @@ function randomizeDice(diceContainer, numberOfDice) {
     for (let i = 0; i < numberOfDice; i++) {
         // 1 - 6 arası ve 1, 6 sayısı dahil olacak şekilde rastgele bir sayı üretiliyor.
         const random = Math.floor((Math.random() * 6) + 1)
+
+        dicesRandom.unshift(random);
         // Rastgele üretilen sayıya(random) göre zar oluşturulurup, zar değişkenine(dice) atanıyor. 
         const dice = createDice(random);
 
@@ -65,13 +67,60 @@ function randomizeDice(diceContainer, numberOfDice) {
     }
 }
 
-const NUMBER_OF_DICE = 5;
+let numberOfDice = 3;
 const diceContainer = document.querySelector(".dice-container");
 const btnRollDice = document.querySelector(".btn-roll-dice");
 
+const turnRollDicesInfo = document.querySelector(".turn-roll-dices-info");
+
+let rollDicesListOl = document.createElement("ol");
+rollDicesListOl.classList.add("olDice");
+
+let dicesRandom = [];
+let dices = [];
+
 btnRollDice.addEventListener("click", () => {
     const interval = setInterval(() => {
-        randomizeDice(diceContainer, NUMBER_OF_DICE);
+        randomizeDice(diceContainer, numberOfDice);
     }, 50);
     setTimeout(() => clearInterval(interval), 1000);
+
+    setTimeout(() => {
+        createTurnRollDicesList()
+    }, 1000);
+
 });
+
+function createTurnRollDicesList() {
+    console.log(dicesRandom);
+    let dicesT = [];
+    for (let i = 0; i < numberOfDice; i++) {
+        console.log(dicesRandom[i]);
+        dicesT.unshift(dicesRandom[i]);
+    }
+    console.log(dicesT);
+    dicesRandom = [];
+
+    let rollDicesListLi = document.createElement("li");
+    rollDicesListLi.classList.add("liDice");
+    const span = document.createElement("span");
+    rollDicesListLi.appendChild(span);
+    for (let i = 0; i < numberOfDice; i++) {
+
+        const dice = createDice(dicesT[i]);
+
+        dice.classList.add("dice-min");
+
+        Array.from(dice.children).forEach(child => {
+            child.classList.add("dice-dot-min");
+        }); 
+
+        rollDicesListLi.appendChild(dice);
+        rollDicesListOl.appendChild(rollDicesListLi);
+    }
+
+    turnRollDicesInfo.appendChild(rollDicesListOl);
+
+}
+
+
