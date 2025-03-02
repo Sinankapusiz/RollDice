@@ -67,17 +67,23 @@ function randomizeDice(diceContainer, numberOfDice) {
     }
 }
 
-let numberOfDice = 3;
+let numberOfDice = 1;
+let numberOfDiceL = [];
+
 const diceContainer = document.querySelector(".dice-container");
 const btnRollDice = document.querySelector(".btn-roll-dice");
+let dicePercentangeTable = document.querySelector(".dice-percentange-table");
 
 const turnRollDicesInfo = document.querySelector(".turn-roll-dices-info");
 
 let rollDicesListOl = document.createElement("ol");
 rollDicesListOl.classList.add("olDice");
 
+
 let dicesRandom = [];
 let dices = [];
+let dicesList = [];
+
 
 btnRollDice.addEventListener("click", () => {
     const interval = setInterval(() => {
@@ -92,35 +98,166 @@ btnRollDice.addEventListener("click", () => {
 });
 
 function createTurnRollDicesList() {
-    console.log(dicesRandom);
+
     let dicesT = [];
+
     for (let i = 0; i < numberOfDice; i++) {
-        console.log(dicesRandom[i]);
         dicesT.unshift(dicesRandom[i]);
     }
-    console.log(dicesT);
+    console.log("dicesT " + dicesT);
+    // dicesRandom burada sıfırlanıyor.
     dicesRandom = [];
 
-    let rollDicesListLi = document.createElement("li");
-    rollDicesListLi.classList.add("liDice");
-    const span = document.createElement("span");
-    rollDicesListLi.appendChild(span);
-    for (let i = 0; i < numberOfDice; i++) {
+    dicesList.unshift(dicesT);
+    console.log("dicesList " + dicesList);
+    rollDicesListOl.innerHTML = "";
 
-        const dice = createDice(dicesT[i]);
+    numberOfDiceL.unshift(numberOfDice);
+    console.log("numberOfDiceL " + numberOfDiceL);
 
-        dice.classList.add("dice-min");
+    // Toplam Zar adeti kadar dönecek.
+    for (let i = 0; i < dicesList.length; i++) {
 
-        Array.from(dice.children).forEach(child => {
-            child.classList.add("dice-dot-min");
-        }); 
+        // Gelen zarlar için 'li' elementi oluşturuluyor.
+        let rollDicesListLi = document.createElement("li");
+        rollDicesListLi.classList.add("liDice");
 
-        rollDicesListLi.appendChild(dice);
-        rollDicesListOl.appendChild(rollDicesListLi);
+        // Her zar geçmişi satırının başına numara ekleniyor.
+        const span = document.createElement("span");
+        span.classList.add("listNumber");
+        span.textContent = (i + 1) + "-";
+        rollDicesListLi.appendChild(span);
+
+        // En son gelen zarları belitmek için css sınıfı tanımlanıyor.
+        if (i === 0)
+            rollDicesListLi.classList.add("last-dice");
+
+        // sorun burada
+        for (let k = 0; k < numberOfDiceL[i]; k++) {
+
+            const dice = createDice(dicesList[i][k]);
+
+            dice.classList.add("dice-min");
+
+            // Zar noktalarına küçük zar tasarımı css sınıfı atanıyor.
+            Array.from(dice.children).forEach(child => {
+                child.classList.add("dice-dot-min");
+            });
+
+            rollDicesListLi.appendChild(dice);
+            rollDicesListOl.appendChild(rollDicesListLi);
+        }
+
     }
 
     turnRollDicesInfo.appendChild(rollDicesListOl);
-
+    console.log(dicesList);
+    diceRollStatistic(dicesList);
 }
+
+function diceRollStatistic(diceRollArray) {
+    let dices = [];
+    for (let i = 1; i < 7; i++) {
+        let count = 0;
+        for (let k = 0; k < diceRollArray.length; k++) {
+            count += diceRollArray[k].filter(eleman => eleman === i).length;
+        }
+        dices[i - 1] = count;
+    }
+    console.log("dices dizisi : " + dices);
+
+    dicePercentange = dices[0] + dices[1] + dices[2] + dices[3] + dices[4] + dices[5];
+
+    dicePercentangeTable.innerHTML = "";
+    dicePercentangeTable.innerHTML =
+        `<tr>
+        <td>
+            <div class="dice">
+                <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
+            </div>
+            <h3>${((dices[0] / dicePercentange) * 100).toFixed(2)}%</h3>
+        </td>
+        <td>
+            <div class="dice">
+                <div class="dice-dot" style="--top: 20%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 80%; --left: 80%;"></div>
+            </div>
+            <h3>${((dices[1] / dicePercentange) * 100).toFixed(2)}%</h3>
+        </td>
+        <td>
+            <div class="dice">
+                <div class="dice-dot" style="--top: 20%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
+                <div class="dice-dot" style="--top: 80%; --left: 80%;"></div>
+            </div>
+            <h3>${((dices[2] / dicePercentange) * 100).toFixed(2)}%</h3>
+        </td>
+    </tr>
+    <tr>
+        <td> 
+            <div class="dice">
+                <div class="dice-dot" style="--top: 20%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 20%; --left: 80%;"></div>
+                <div class="dice-dot" style="--top: 80%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 80%; --left: 80%;"></div>
+            </div>
+            <h3>${((dices[3] / dicePercentange) * 100).toFixed(2)}%</h3>
+        </td>
+        <td> 
+            <div class="dice">
+                <div class="dice-dot" style="--top: 20%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 20%; --left: 80%;"></div>
+                <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
+                <div class="dice-dot" style="--top: 80%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 80%; --left: 80%;"></div>
+            </div>
+            <h3>${((dices[4] / dicePercentange) * 100).toFixed(2)}%</h3>
+        </td>
+        <td> 
+            <div class="dice">
+                <div class="dice-dot" style="--top: 20%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 20%; --left: 80%;"></div>
+                <div class="dice-dot" style="--top: 50%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 50%; --left: 80%;"></div>
+                <div class="dice-dot" style="--top: 80%; --left: 20%;"></div>
+                <div class="dice-dot" style="--top: 80%; --left: 80%;"></div>
+            </div>
+            <h3>${((dices[5] / dicePercentange) * 100).toFixed(2)}%</h3>
+        </td>
+    </tr>`;
+}
+
+
+// Settings
+
+// Zar adeti
+const dicesBtns = Array.from(document.querySelectorAll(".dice-btn"));
+dicesBtns[numberOfDice - 1].classList.add("dice-btn-actived");
+dicesBtns.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        dicesBtns[index].classList.add("dice-btn-actived");
+        dicesBtns[numberOfDice - 1].classList.remove("dice-btn-actived");
+        numberOfDice = index + 1;
+    }
+    )
+});
+
+const dicesBtnsDesign = Array.from(document.querySelectorAll(".dice-btn-design"));
+
+let diceDesignNumber = 0;
+const diceDesignColors = ["white","red","blue","yellow","green","orange"]
+//dicesBtnsDesign[diceDesignNumber].style.backgroundColor = diceDesignColors[1];
+
+dicesBtnsDesign.forEach((button, index) => {
+    dicesBtnsDesign[index].style.backgroundColor = diceDesignColors[index];
+    button.addEventListener("click", () => {
+        dicesBtnsDesign[index].classList.add("dice-btn-design-actived");
+        dicesBtnsDesign[diceDesignNumber].classList.remove("dice-btn-design-actived");
+        diceDesignNumber = index;
+
+        document.documentElement.style.setProperty("--dice-background-color",diceDesignColors[index]);
+    }
+    )
+});
 
 
