@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,10 @@
     <title>Roll Dice App</title>
     <link rel="stylesheet" href="main.css">
     <script src="main.js" defer></script>
-
+    <link rel="icon" href="icon.png" type="image/x-icon" />
 </head>
 
-<body>
+<body class="light-theme">
     <div class="content-container">
         <div class="content-dice">
             <h1>KENDİNİ ŞANSLI HİSSEDİYORMUSUN?</h1>
@@ -20,9 +20,9 @@
             <p>Zar adetini, "Ayarlar" -> "Zar Adeti" kısmından değiştirebilirsiniz!</p>
             <button class="btn-roll-dice">KENDİMİ ŞANSLI HİSSEDİYORUM!</button>
         </div>
-        <div>
-            <h2><img src="https://img.icons8.com/?size=28&id=98076&format=png&color=000000"
-                    style="margin-right:8px ; position: relative; top: 4px;" alt="">GELEN ZAR İSTATİSTİKLERİ</h2>
+        <div class="general-content">
+            <h2><img src="https://img.icons8.com/?size=28&id=98076&format=png&color=000000" class="statistic-img"
+                     alt="">GELEN ZAR İSTATİSTİKLERİ</h2>
             <div class="dice-statistics">
                 <div class="turn-roll-dices-info">
                     <h2>Gelen Zarlar</h2>
@@ -35,8 +35,8 @@
             </div>
         </div>
         <div class="settings">
-            <h2><img src="https://img.icons8.com/?size=28&id=2969&format=png&color=000000"
-                    style="margin-right:8px ; position: relative; top: 4px;" alt="">AYARLAR</h2>
+            <h2><img src="https://img.icons8.com/?size=28&id=2969&format=png&color=000000" class="setting-img"
+                    alt="">AYARLAR</h2>
             <div class="setting">
                 <h3>Genel Ayarlar</h3>
                 <div class="general-setting">
@@ -44,7 +44,7 @@
                         <h4>Zar Ayarları</h4>
                         <div class="panel-div">
                             <h5>Zar Adeti</h5>
-                            <div>
+                            <div style="display: flex;flex-direction: row;">
                                 <button class="dice dice-btn">
                                     <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
                                 </button>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="panel-div">
                             <h5>Zar Rengi</h5>
-                            <div>
+                            <div style="display: flex;flex-direction: row;">
                                 <button class="dice dice-btn-design">
                                     <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
                                 </button>
@@ -102,8 +102,20 @@
                                 <button class="dice dice-btn-design">
                                     <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
                                 </button>
+                                <button class="dice dice-btn-design">
+                                    <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
+                                </button>
+                                <button class="dice dice-btn-design">
+                                    <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
+                                </button>
                             </div>
-                            
+                            <h5>Zar Nokta Rengi</h5>
+                            <div style="display: flex;flex-direction: row;">
+                                <button class="dice-dot-design-btn dice-dot-design-one"></button>
+                                <button class="dice-dot-design-btn dice-dot-design-two"></button>
+                                <button class="dice-dot-design-btn dice-dot-design-three"></button>
+                                <button class="dice-dot-design-btn dice-dot-design-four"></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,37 +124,52 @@
                 <div class="design-setting">
                     <div class="panel-div">
                         <h5>Temalar</h5>
-                        <div>
-                             <button class="dice dice-btn-design">
-                                <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
-                            </button>
-                            <button class="dice dice-btn-design">
-                                <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
-                            </button>
-                            <button class="dice dice-btn-design">
-                                <div class="dice-dot " style="--top: 50%; --left: 50%;"></div>
-                            </button>
-                            <button class="dice dice-btn-design">
-                                <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
-                            </button>
-                            <button class="dice dice-btn-design">
-                                <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
-                            </button>
-                            <button class="dice dice-btn-design">
-                                <div class="dice-dot" style="--top: 50%; --left: 50%;"></div>
-                            </button>
+                        <div style="display: flex;flex-direction: row;">
+                            <div style="display: flex;flex-direction:column; align-items: center;">
+                                <button class="background-design-btn theme-design-btn theme-design-btn-one"></button>
+                                <span>Açık Tema</span>
+                            </div>
+                            <div style="display: flex;flex-direction:column; align-items: center;">
+                                <button class="background-design-btn theme-design-btn theme-design-btn-two"></button>
+                                <span>Koyu Tema</span>
+                            </div>
+                            <div style="display: flex;flex-direction:column; align-items: center;">
+                                <button class="background-design-btn theme-design-btn theme-design-btn-three"></button>
+                                <span>Gri Tema</span>
+                            </div>
+                            <div style="display: flex;flex-direction:column; align-items: center;">
+                                <button class="background-design-btn theme-design-btn theme-design-btn-four"></button>
+                                <span>Mavi Tema</span>
+                            </div>
                         </div>                          
                     </div>
                     <div class="panel-div">
                         <h5>Arka Plan</h5>
-                        <div>
-                             <button class="background-btn-design background-btn-design-one"></button>
-                             <button class="background-btn-design background-btn-design-two"></button>
-                             <button class="background-btn-design background-btn-design-three"></button>
-                             <button class="background-btn-design background-btn-design-four"></button>
-                             <button class="background-btn-design background-btn-design-five"></button>
-                             <button class="background-btn-design background-btn-design-six"></button>
-                        </div>                          
+                        <div style="display: flex;flex-direction: row;">
+                             <button class="background-design-btn background-design-one background-pattern-btn"></button>
+                             <button class="background-design-btn background-design-two background-pattern-btn"></button>
+                             <button class="background-design-btn background-design-three background-pattern-btn"></button>
+                             <button class="background-design-btn background-design-four background-pattern-btn"></button>
+                             <button class="background-design-btn background-design-five background-pattern-btn"></button>
+                             <button class="background-design-btn background-design-six background-pattern-btn"></button>
+                        </div>
+                        <h5>Arka Plan Renk Takımı</h5>
+                        <div style="display: flex;flex-direction: row;">
+                             <button class="background-design-btn background-colors-palette-one background-color-btn"></button>
+                             <button class="background-design-btn background-colors-palette-two background-color-btn"></button>
+                             <button class="background-design-btn background-colors-palette-three background-color-btn"></button>
+                             <button class="background-design-btn background-colors-palette-four background-color-btn"></button>
+                             <button class="background-design-btn background-colors-palette-five background-color-btn"></button>
+                             <button class="background-design-btn background-colors-palette-six background-color-btn"></button>
+                        </div>      
+                        <h5>Arka Plan Desen Boyutu</h5>
+                        <div style="display: flex;flex-direction: row;">
+                             <button class="background-design-btn background-pattern-size-btn">Çok Küçük</button>
+                             <button class="background-design-btn background-pattern-size-btn">Küçük</button>
+                             <button class="background-design-btn background-pattern-size-btn">Normal</button>
+                             <button class="background-design-btn background-pattern-size-btn">Büyük</button>
+                             <button class="background-design-btn background-pattern-size-btn">Çok Büyük</button>
+                        </div>                       
                     </div>
                 </div>
             </div>

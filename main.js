@@ -228,7 +228,7 @@ function diceRollStatistic(diceRollArray) {
 }
 
 
-// Settings
+// Ayarlar
 
 // Zar adeti
 const dicesBtns = Array.from(document.querySelectorAll(".dice-btn"));
@@ -242,11 +242,14 @@ dicesBtns.forEach((button, index) => {
     )
 });
 
+
+// Zar Rengi Ayarları
 const dicesBtnsDesign = Array.from(document.querySelectorAll(".dice-btn-design"));
 
 let diceDesignNumber = 0;
-const diceDesignColors = ["white","red","blue","yellow","green","orange"]
-//dicesBtnsDesign[diceDesignNumber].style.backgroundColor = diceDesignColors[1];
+const diceDesignColors = ["white", "red", "blue", "yellow", "green", "orange", "#E89EB8", "#7f00ff"];
+
+dicesBtnsDesign[0].classList.add("dice-btn-design-actived");
 
 dicesBtnsDesign.forEach((button, index) => {
     dicesBtnsDesign[index].style.backgroundColor = diceDesignColors[index];
@@ -254,10 +257,226 @@ dicesBtnsDesign.forEach((button, index) => {
         dicesBtnsDesign[index].classList.add("dice-btn-design-actived");
         dicesBtnsDesign[diceDesignNumber].classList.remove("dice-btn-design-actived");
         diceDesignNumber = index;
-
-        document.documentElement.style.setProperty("--dice-background-color",diceDesignColors[index]);
+        document.documentElement.style.setProperty("--dice-background-color", diceDesignColors[index]);
     }
     )
 });
 
+// Arkaplan Tasarım Seçimi
 
+const backgroundBtnsDesign = Array.from(document.querySelectorAll(".background-pattern-btn"));
+let backgroundDesignNumber = 0;
+
+backgroundBtnsDesign[0].classList.add("background-design-btn-actived");
+
+// Arkaplan Renk Takımları
+let backgroundColorOne = "#e9e9e9";
+let backgroundColorTwo = "#ffffff";
+let backgroundPatternSize = 64;
+
+// Desenler
+backgroundBtnsDesign.forEach((button, index) => {
+    document.body.style = "";
+    document.body.style.padding = "0px";
+
+
+    button.addEventListener("click", () => {
+
+        changeBackgroundDesign(index);
+        backgroundBtnsDesign[index].classList.add("background-design-btn-actived");
+        backgroundBtnsDesign[backgroundDesignNumber].classList.remove("background-design-btn-actived");
+        backgroundDesignNumber = index;
+    })
+});
+
+function changeBackgroundDesign(index) {
+    switch (index) {
+        case 0:
+            document.body.style.backgroundImage = `repeating-conic-gradient(${backgroundColorOne} 0% 25%, ${backgroundColorTwo} 0% 50%)`;
+            document.body.style.backgroundPosition = "0 0, 32px 32px";
+            document.body.style.backgroundSize = `${backgroundPatternSize}px ${backgroundPatternSize}px`;
+            break;
+        case 1:
+            document.body.style.background = `repeating-conic-gradient(from 45deg, ${backgroundColorOne} 0% 25%, ${backgroundColorTwo} 0% 50%)`;
+            document.body.style.backgroundSize = `${backgroundPatternSize}px ${backgroundPatternSize}px`;
+            break;
+        case 2:
+            document.body.style.backgroundImage = `linear-gradient(${backgroundColorOne} 2px, transparent 2px), linear-gradient(to right, ${backgroundColorOne} 2px, transparent 2px)`;
+            document.body.style.backgroundColor = backgroundColorTwo;
+            document.body.style.backgroundSize = `${backgroundPatternSize}px ${backgroundPatternSize}px`;
+            break;
+        case 3:
+            document.body.style.backgroundImage = `repeating-linear-gradient(45deg, ${backgroundColorOne} 0, ${backgroundColorTwo} 2px, transparent 0, transparent 50%)`;
+            document.body.style.backgroundColor = backgroundColorTwo;
+            document.body.style.backgroundSize = `${backgroundPatternSize}px ${backgroundPatternSize}px`;
+            break;
+        case 4:
+            document.body.style.backgroundImage = `linear-gradient(90deg, transparent 50%, ${backgroundColorOne} 50%)`;
+            document.body.style.backgroundColor = backgroundColorTwo;
+            document.body.style.backgroundSize = `${backgroundPatternSize}px ${backgroundPatternSize}px`;
+            break;
+        case 5:
+            document.body.style.background = `repeating-linear-gradient(45deg, transparent, transparent ${backgroundPatternSize}px, ${backgroundColorOne} ${backgroundPatternSize}px, ${backgroundColorOne} ${backgroundPatternSize * 2}px)`;
+            document.body.style.backgroundColor = backgroundColorTwo;
+            break;
+        default:
+            document.body.style.backgroundImage = `repeating-conic-gradient(${backgroundColorOne} 0% 25%, ${backgroundColorTwo} 0% 50%)`;
+            document.body.style.backgroundPosition = "0 0, 32px 32px";
+            document.body.style.backgroundSize = `${backgroundPatternSize}px ${backgroundPatternSize}px`;
+            break;
+    }
+};
+// Renk Buttonları
+
+const backgroundColorBtn = Array.from(document.querySelectorAll(".background-color-btn"));
+let backgroundColorBtnNumber = 0;
+
+backgroundColorBtn[0].classList.add("background-design-btn-actived");
+
+backgroundColorBtn.forEach((button, index) => {
+
+    button.addEventListener("click", () => {
+        backgroundColorBtn[index].classList.add("background-design-btn-actived");
+        backgroundColorBtn[backgroundColorBtnNumber].classList.remove("background-design-btn-actived");
+        backgroundColorBtnNumber = index;
+
+        switch (index) {
+            case 0:
+                backgroundColorOne = "#e9e9e9";
+                backgroundColorTwo = "#ffffff";
+                break;
+            case 1:
+                backgroundColorOne = "#3C3C3C";
+                backgroundColorTwo = "#D3D3D3";
+                break;
+            case 2:
+                backgroundColorOne = "#2D3436";
+                backgroundColorTwo = "#FDCB6E";
+                break;
+            case 3:
+                backgroundColorOne = "#FF6B6B";
+                backgroundColorTwo = "#1E90FF";
+                break;
+            case 4:
+                backgroundColorOne = "#D2691E";
+                backgroundColorTwo = "#F5DEB3";
+                break;
+            case 5:
+                backgroundColorOne = "#8A2BE2";
+                backgroundColorTwo = "#00CED1";
+                break;
+            default:
+                backgroundColorOne = "#e9e9e9";
+                backgroundColorTwo = "#ffffff";
+                break;
+        }
+        changeBackgroundDesign(backgroundDesignNumber);
+    });
+});
+
+const backgroundPatternSizeBtn = Array.from(document.querySelectorAll(".background-pattern-size-btn"));
+let backgroundPatternSizeBtnNumber = 2;
+
+backgroundPatternSizeBtn[backgroundPatternSizeBtnNumber].classList.add("background-design-btn-actived");
+
+backgroundPatternSizeBtn.forEach((button, index) => {
+
+    button.addEventListener("click", () => {
+        backgroundPatternSizeBtn[index].classList.add("background-design-btn-actived");
+        backgroundPatternSizeBtn[backgroundPatternSizeBtnNumber].classList.remove("background-design-btn-actived");
+        backgroundPatternSizeBtnNumber = index;
+
+        switch (index) {
+            case 0:
+                backgroundPatternSize = 16;
+                break;
+            case 1:
+                backgroundPatternSize = 32;
+                break;
+            case 2:
+                backgroundPatternSize = 64;
+                break;
+            case 3:
+                backgroundPatternSize = 128;
+                break;
+            case 4:
+                backgroundPatternSize = 256;
+                break;
+            default:
+                break;
+        }
+
+        changeBackgroundDesign(backgroundDesignNumber);
+    });
+});
+
+
+const themeDesignBtn = Array.from(document.querySelectorAll(".theme-design-btn"));
+themeDesignBtnNumber = 0;
+themeDesignBtn[themeDesignBtnNumber].classList.add("background-design-btn-actived");
+themeDesignBtn.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        const statisticImg = document.querySelector(".statistic-img");
+        const settingImg = document.querySelector(".setting-img");
+
+        themeDesignBtn[index].classList.add("background-design-btn-actived");
+        themeDesignBtn[themeDesignBtnNumber].classList.remove("background-design-btn-actived");
+
+        themeDesignBtnNumber = index;
+
+        switch (index) {
+            case 0:
+                statisticImg.src = "https://img.icons8.com/?size=28&id=98076&format=png&color=000000";
+                settingImg.src = "https://img.icons8.com/?size=28&id=2969&format=png&color=000000";
+                document.body.classList = "";
+                document.body.classList.add("light-theme");
+                break;
+            case 1:
+                statisticImg.src = "https://img.icons8.com/?size=28&id=98076&format=png&color=ffffff";
+                settingImg.src = "https://img.icons8.com/?size=28&id=2969&format=png&color=ffffff";
+                document.body.classList = "";
+                document.body.classList.add("dark-theme");
+                break;
+            case 2:
+                statisticImg.src = "https://img.icons8.com/?size=28&id=98076&format=png&color=ffffff";
+                settingImg.src = "https://img.icons8.com/?size=28&id=2969&format=png&color=ffffff";
+                document.body.classList = "";
+                document.body.classList.add("gray-theme");
+                break;
+            case 3:
+                statisticImg.src = "https://img.icons8.com/?size=28&id=98076&format=png&color=ffffff";
+                settingImg.src = "https://img.icons8.com/?size=28&id=2969&format=png&color=ffffff";
+                document.body.classList = "";
+                document.body.classList.add("blue-theme");
+                break;
+
+            default:
+                break;
+        }
+    });
+});
+
+const diceDotDesignBtn = Array.from(document.querySelectorAll(".dice-dot-design-btn"));
+
+diceDotDesignBtn.forEach((button, index) => {
+
+    button.addEventListener("click", () => {
+        switch (index) {
+            case 0:
+                document.documentElement.style.setProperty("--dice-dot-bg-color", "black");
+                break;
+            case 1:
+                document.documentElement.style.setProperty("--dice-dot-bg-color", "burlywood");
+                break;
+            case 2:
+                document.documentElement.style.setProperty("--dice-dot-bg-color", "darkgreen");
+                break;
+            case 3:
+                document.documentElement.style.setProperty("--dice-dot-bg-color", "darkmagenta");
+                break;
+            default:
+                document.documentElement.style.setProperty("--dice-dot-bg-color", "black");
+                break;
+        }
+    });
+});

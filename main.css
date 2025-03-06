@@ -1,25 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nova+Mono&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+
+:root{
+    --dice-dot-bg-color:black;
+    --dice-background-color:white;
+}
+
+.light-theme {
+    --bg-color: white;
+    --text-color: black;
+    --h-bg-color: cornsilk;
+    --border-color: black;
+}
+
+.dark-theme {
+    --bg-color: black;
+    --text-color: white;
+    --h-bg-color: rgb(26, 26, 26);
+    --border-color: white;
+}
+.gray-theme {
+    --bg-color: gray;
+    --text-color: white;
+    --h-bg-color: rgb(154, 151, 151);
+    --border-color: white;
+}
+.blue-theme {
+    --bg-color: blue;
+    --text-color: white;
+    --h-bg-color: rgb(79, 79, 252);
+    --border-color: white;
+}
+
 body {
     padding: 0px;
     margin: 0px;
     background-image: repeating-conic-gradient(#ffffff 0% 25%, #f0f0f0 0% 50%);
     background-position: 0 0, 55px 55px;
-    background-size: 110px 110px;
-    background-color: #f0f0f0;
+    background-size: 64px 64px;
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+p,span{
+    color: var(--text-color);
+    text-align: center;
+    font-family: "Roboto", serif;
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-:root {
-    --dice-background-color: white;
+h1,
+h2,
+h3,
+h4 {
+    background-color: var(--h-bg-color);
+    color: var(--text-color);
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .content-container {
     max-width: 60%;
     margin: auto;
-    border: 2px dashed black;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
+    border: 2px dashed var(--border-color);
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.5);
     margin-top: 10px;
-    background-color: white;
+    background-color: var(--bg-color);
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .dice-container {
@@ -34,14 +78,15 @@ body {
     position: relative;
     margin: 5px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.5);
     background-color: var(--dice-background-color);
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .dice-min {
     width: 40px;
     height: 40px;
-    box-shadow: 0 0 5px rgb(0, 0, 0, 0.25);
+    box-shadow: 0 2px 5px rgb(0, 0, 0, 0.5);
 }
 
 .dice-dot {
@@ -50,7 +95,7 @@ body {
 
     width: 15px;
     height: 15px;
-    background-color: black;
+    background-color: var(--dice-dot-bg-color);
     border-radius: 50%;
 
     /*Dot Positioning*/
@@ -58,6 +103,7 @@ body {
     top: var(--top);
     left: var(--left);
     transform: translateX(calc(var(--left)*-1)) translateY(calc(var(--top)*-1));
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .dice-dot-min {
@@ -85,7 +131,7 @@ body {
     font-size: 1.2rem;
     background-color: lawngreen;
     cursor: pointer;
-    border: 2px dashed black;
+    border: 2px dashed var(--border-color);
     font-weight: 500;
 }
 
@@ -114,9 +160,10 @@ h1,
 h2 {
     text-align: center;
     font-family: "Roboto", serif;
-    border: 2px dashed black;
+    border: 2px dashed var(--border-color);
     margin: 10px 10px;
     padding: 10px;
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .content-dice {
@@ -131,7 +178,8 @@ h2 {
     justify-content: center;
     padding: 10px;
     margin: 10px;
-    border: 2px dashed black;
+    border: 2px dashed var(--border-color);
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .turn-roll-dices-info {
@@ -159,7 +207,6 @@ tr {
     display: flex;
     justify-content: center;
     flex-direction: row;
-
 }
 
 td {
@@ -167,8 +214,9 @@ td {
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    border: 2px dashed black;
+    border: 2px dashed var(--border-color);
     padding: 1rem;
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 td>h3 {
@@ -193,38 +241,32 @@ td>h3 {
 }
 
 .setting {
-    border: 2px dashed black;
+    border: 2px dashed var(--border-color);
     margin: 10px;
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .setting>h3 {
     text-align: center;
     font-family: "Roboto", serif;
     font-size: 1.2rem;
-    border: 2px dashed black;
+    border: 2px dashed var(--border-color);
     margin: 10px;
     padding: 10px 0px;
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .dice-settings>h4 {
     text-align: center;
     font-family: "Roboto", serif;
     font-size: 1rem;
-    border: 2px dashed black;
+    border: 2px dashed var(--border-color);
     padding: 10px 0px;
     width: calc(100% - 20px);
     margin: 10px 10px 0px 10px;
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 
 }
-
-
-.dice-mid {
-    width: 40px;
-    height: 40px;
-    box-shadow: 0 0 5px rgb(0, 0, 0, 0.25);
-}
-
-
 
 .dice-settings {
     display: flex;
@@ -239,18 +281,20 @@ td>h3 {
 }
 
 .panel-div {
-    border: 2px dashed black;
+    border: 2px dashed var(--border-color);
     width: calc(100% - 40px);
-    padding: 10px;
+    padding: 10px 10px 30px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 h5 {
     font-family: "Roboto", serif;
     font-size: 1rem;
     margin: 10px;
+    color: var(--text-color);
 }
 
 .dice-btn {
@@ -281,54 +325,131 @@ h5 {
     border: 5px solid rgb(157, 3, 59);
 }
 
-.background-btn-design {
+.background-design-btn {
+    border: 0px;
     width: 80px;
     height: 80px;
     margin: 5px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
-    background-color: var(--dice-background-color);
-    border: 0px;
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.5);
+    background-color: white;
+    font-size: 1rem;
 }
 
+.background-design-btn-actived {
+    border: 5px solid rgb(157, 3, 59);
+}
 
-.background-btn-design:hover {
+.background-design-btn:hover {
     border: 5px solid rgb(157, 3, 59);
     transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.background-btn-design-one {
+.background-design-one {
     background-image: repeating-conic-gradient(#e9e9e9 0% 25%, #ffffff 0% 50%);
     background-position: 0 0, 32px 32px;
     background-size: 16px 16px;
-    background-color: #ffffff;
 }
 
-.background-btn-design-two {
+.background-design-two {
     background: repeating-conic-gradient(from 45deg, #e9e9e9 0% 25%, #ffffff 0% 50%);
     background-size: 16px 16px;
-    background-color: #ffffff;
 }
 
-.background-btn-design-three {
+.background-design-three {
     background-image: linear-gradient(#e9e9e9 2px, transparent 2px), linear-gradient(to right, #e9e9e9 2px, transparent 2px);
     background-size: 16px 16px;
-    background-color: #ffffff;
+    background-color: white;
 }
 
-.background-btn-design-four {
+.background-design-four {
     background-image: repeating-linear-gradient(45deg, #e9e9e9 0, #e9e9e9 2px, transparent 0, transparent 50%);
     background-size: 16px 16px;
-    background-color: #ffffff;
+    background-color: white;
 }
 
-.background-btn-design-five {
+.background-design-five {
     background-image: linear-gradient(90deg, transparent 50%, #e9e9e9 50%);
     background-size: 16px 16px;
-    background-color: #ffffff;
+    background-color: white;
 }
 
-.background-btn-design-six {
+.background-design-six {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 8px, #e9e9e9 8px, #e9e9e9 16px);
-    background-color: #ffffff;
+    background-color: white;
+}
+
+.background-colors-palette-one {
+    background: linear-gradient(to right, #e9e9e9 50%, #ffffff 50%);
+}
+
+.background-colors-palette-two {
+    background: linear-gradient(to right, #3C3C3C 50%, #D3D3D3 50%);
+}
+
+.background-colors-palette-three {
+    background: linear-gradient(to right, #2D3436 50%, #FDCB6E 50%);
+}
+
+.background-colors-palette-four {
+    background: linear-gradient(to right, #FF6B6B 50%, #1E90FF 50%);
+}
+
+.background-colors-palette-five {
+    background: linear-gradient(to right, #D2691E 50%, #F5DEB3 50%);
+}
+
+.background-colors-palette-six {
+    background: linear-gradient(to right, #8A2BE2 50%, #00CED1 50%);
+}
+
+.statistic-img {
+    margin-right: 8px;
+    position: relative;
+    top: 4px;
+}
+
+.setting-img {
+    margin-right: 8px;
+    position: relative;
+    top: 4px;
+}
+
+.theme-design-btn-one{
+    background-color: white;
+}
+.theme-design-btn-two{
+    background-color: black;
+}
+.theme-design-btn-three{
+    background-color: gray;
+}
+.theme-design-btn-four{
+    background-color: blue;
+}
+
+.dice-dot-design-btn{
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid white;
+    margin: 0px 10px;
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.5);
+    
+}
+.dice-dot-design-one{
+    background-color: black;
+}
+.dice-dot-design-two{
+    background-color:burlywood;
+}
+.dice-dot-design-three{
+    background-color:darkgreen;
+}
+.dice-dot-design-four{
+    background-color:darkmagenta;
+}
+.dice-dot-design-btn:hover{
+    border: 5px solid rgb(157, 3, 59);
+    transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
