@@ -45,6 +45,7 @@ p,span{
     text-align: center;
     font-family: "Roboto", serif;
     transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin: auto 0px;
 }
 
 h1,
@@ -121,6 +122,7 @@ h4 {
     font-size: 3rem;
     font-weight: bold;
     font-family: "Roboto", serif;
+    color: black;
 }
 
 .btn-roll-dice {
@@ -452,4 +454,35 @@ h5 {
 .dice-dot-design-btn:hover{
     border: 5px solid rgb(157, 3, 59);
     transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.info-banner{
+    width: 100vw;
+    height: 40px;
+    background-color: var(--bg-color);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.5);
+}
+.info-banner>.info-content>img{
+    width: 30px;
+    height: 30px;
+    margin: auto 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+.info-content{
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+a{
+    color: var(--text-color);
+}
+a:hover{
+    color: rgb(242 163 25);
 }
