@@ -66,6 +66,16 @@ h4 {
     background-color: var(--bg-color);
     transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+@media screen and (max-width: 1200px){
+    .content-container {
+        max-width: 80%;
+    }
+}
+@media screen and (max-width: 800px){
+    .content-container {
+        max-width: 100%;
+    }
+}
 
 .dice-container {
     display: flex;
